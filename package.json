@@ -1,7 +1,6 @@
 {
   "name": "cpsc349-project2",
-
-
+  "homepage": "https://aguirreandrea58.github.io/EGCP471proj",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -13,10 +12,10 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon _remake/server.js --watch ./",
     "tailwind": "npx tailwindcss -i ./src/input.css -o ./app/assets/css/main.css --watch",
-    "start":"npm-run-all --parallel dev tailwind",
+    "start": "npm-run-all --parallel dev tailwind",
     "build": "npx esbuild _remake/client-side/index.js --bundle --minify --sourcemap=external --outdir=_remake/dist/remake/js --target=edge18 --format=iife --global-name=Remake && mv _remake/dist/remake/js/index.js _remake/dist/remake/js/remake.min.js && mv _remake/dist/remake/js/index.js.map _remake/dist/remake/js/remake.min.js.map && echo '//# sourceMappingURL=remake.min.js.map' >> _remake/dist/remake/js/remake.min.js",
-    "test": "ava"
-
+    "test": "ava",
+    "deploy": "npm run build && gh-pages -d _remake/dist/remake"
   },
   "nodemonConfig": {
     "ignore": [
@@ -42,7 +41,7 @@
   },
   "dependencies": {
     "archiver": "^3.1.1",
-    "axios": "^0.21.1",
+    "axios": "^1.6.2",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "change-case": "^3.1.0",
@@ -64,7 +63,7 @@
     "is-valid-domain": "0.0.17",
     "jsdom": "^16.5.3",
     "jsonfile": "^5.0.0",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.2",
     "lodash": "^4.17.20",
     "mailgun.js": "^3.5.9",
     "mkdirp": "^0.5.1",
@@ -86,6 +85,7 @@
     "@ava/babel": "^1.0.1",
     "ava": "^5.0.1",
     "esbuild": "^0.14.9",
+    "gh-pages": "^6.1.0",
     "husky": "^6.0.0",
     "nodemon": "^2.0.13",
     "npm-run-all": "^4.1.5",
